@@ -1,0 +1,117 @@
+.main {
+  width: 100%;
+  margin: 0;
+  padding: 0;
+}
+
+.section {
+  background-color: #FFFFFF;
+  padding: 4rem 2rem;
+  min-height: calc(100vh - 200px);
+  display: flex;
+  align-items: center;
+  justify-content: center;
+}
+
+.container {
+  max-width: 600px;
+  text-align: center;
+}
+
+.cancelIcon {
+  width: 80px;
+  height: 80px;
+  background-color: #EF4444;
+  color: #FFFFFF;
+  border-radius: 50%;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  font-size: 3rem;
+  font-weight: bold;
+  margin: 0 auto 2rem;
+}
+
+.title {
+  font-size: 2.5rem;
+  font-weight: 700;
+  color: #003B5C;
+  margin: 0 0 1rem 0;
+}
+
+.message {
+  font-size: 1.125rem;
+  color: #003B5C;
+  margin: 0 0 2rem 0;
+  opacity: 0.9;
+  line-height: 1.6;
+}
+
+.actions {
+  display: flex;
+  gap: 1rem;
+  justify-content: center;
+  margin-bottom: 2rem;
+  flex-wrap: wrap;
+}
+
+.button {
+  background-color: #C69214;
+  color: #FFFFFF;
+  text-decoration: none;
+  padding: 0.875rem 2rem;
+  border-radius: 6px;
+  font-size: 1rem;
+  font-weight: 600;
+  transition: filter 0.2s;
+  display: inline-block;
+}
+
+.button:hover {
+  filter: brightness(0.9);
+}
+
+.buttonSecondary {
+  background-color: transparent;
+  color: #003B5C;
+  text-decoration: none;
+  padding: 0.875rem 2rem;
+  border-radius: 6px;
+  font-size: 1rem;
+  font-weight: 600;
+  border: 2px solid #003B5C;
+  transition: background-color 0.2s;
+  display: inline-block;
+}
+
+.buttonSecondary:hover {
+  background-color: rgba(0, 59, 92, 0.05);
+}
+
+.note {
+  font-size: 0.95rem;
+  color: #003B5C;
+  opacity: 0.8;
+  margin: 0;
+  line-height: 1.6;
+}
+
+@media (max-width: 640px) {
+  .section {
+    padding: 2rem 1rem;
+  }
+
+  .title {
+    font-size: 2rem;
+  }
+
+  .actions {
+    flex-direction: column;
+  }
+
+  .button,
+  .buttonSecondary {
+    width: 100%;
+  }
+}
+

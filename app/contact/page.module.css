@@ -1,0 +1,131 @@
+.main {
+  width: 100%;
+  margin: 0;
+  padding: 0;
+}
+
+.contactSection {
+  background-color: #FFFFFF;
+  padding: 4rem 2rem;
+  min-height: calc(100vh - 200px);
+}
+
+.contactContent {
+  max-width: 800px;
+  margin: 0 auto;
+}
+
+.headline {
+  font-size: 2.5rem;
+  font-weight: 700;
+  color: #003B5C;
+  margin: 0 0 1.5rem 0;
+  line-height: 1.2;
+  text-align: center;
+}
+
+.intro {
+  font-size: 1.25rem;
+  color: #003B5C;
+  line-height: 1.6;
+  margin: 0 0 1.5rem 0;
+  text-align: center;
+  opacity: 0.9;
+}
+
+.emailLink {
+  color: #C69214;
+  text-decoration: none;
+  font-weight: 500;
+  transition: opacity 0.2s;
+}
+
+.emailLink:hover {
+  opacity: 0.8;
+  text-decoration: underline;
+}
+
+.ctaContainer {
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+  gap: 1rem;
+  margin-bottom: 4rem;
+}
+
+.primaryCTA {
+  background-color: #C69214;
+  color: #FFFFFF;
+  text-decoration: none;
+  padding: 1rem 2.5rem;
+  border-radius: 6px;
+  font-size: 1.125rem;
+  font-weight: 600;
+  transition: filter 0.2s;
+  display: inline-block;
+  text-align: center;
+  width: 100%;
+  max-width: 400px;
+}
+
+.primaryCTA:hover {
+  filter: brightness(0.9);
+}
+
+.secondaryCTA {
+  color: #003B5C;
+  text-decoration: none;
+  font-size: 1rem;
+  font-weight: 500;
+  transition: opacity 0.2s;
+  display: inline-block;
+}
+
+.secondaryCTA:hover {
+  opacity: 0.7;
+  text-decoration: underline;
+}
+
+
+/* Mobile Responsive */
+@media (max-width: 768px) {
+  .contactSection {
+    padding: 3rem 1.5rem;
+  }
+
+  .headline {
+    font-size: 2rem;
+    margin-bottom: 1.25rem;
+  }
+
+  .intro {
+    font-size: 1.125rem;
+    margin-bottom: 2.5rem;
+  }
+
+  .ctaContainer {
+    margin-bottom: 3rem;
+  }
+
+}
+
+@media (max-width: 480px) {
+  .contactSection {
+    padding: 2rem 1rem;
+  }
+
+  .headline {
+    font-size: 1.75rem;
+  }
+
+  .intro {
+    font-size: 1rem;
+    margin-bottom: 2rem;
+  }
+
+  .ctaContainer {
+    margin-bottom: 2.5rem;
+  }
+
+}
+

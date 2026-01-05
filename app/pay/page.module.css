@@ -1,0 +1,103 @@
+.main {
+  width: 100%;
+  margin: 0;
+  padding: 0;
+}
+
+.section {
+  background-color: #FFFFFF;
+  padding: 4rem 2rem;
+  min-height: calc(100vh - 200px);
+  display: flex;
+  align-items: center;
+  justify-content: center;
+}
+
+.container {
+  max-width: 600px;
+  text-align: center;
+}
+
+.title {
+  font-size: 2.5rem;
+  font-weight: 700;
+  color: #003B5C;
+  margin: 0 0 1rem 0;
+}
+
+.description {
+  font-size: 1.125rem;
+  color: #003B5C;
+  margin: 0 0 1.5rem 0;
+  opacity: 0.9;
+}
+
+.tutorInfo {
+  font-size: 1rem;
+  color: #003B5C;
+  margin: 0 0 2rem 0;
+  padding: 1rem;
+  background-color: #F8F9FA;
+  border-radius: 6px;
+}
+
+.error {
+  background-color: #FFF5F5;
+  border: 1px solid #FEB2B2;
+  color: #C53030;
+  padding: 1rem;
+  border-radius: 6px;
+  margin-bottom: 1.5rem;
+  text-align: left;
+}
+
+.button {
+  background-color: #C69214;
+  color: #FFFFFF;
+  border: none;
+  padding: 1rem 2.5rem;
+  border-radius: 6px;
+  font-size: 1.125rem;
+  font-weight: 600;
+  cursor: pointer;
+  transition: filter 0.2s;
+  margin-bottom: 2rem;
+}
+
+.button:hover:not(:disabled) {
+  filter: brightness(0.9);
+}
+
+.button:disabled {
+  opacity: 0.6;
+  cursor: not-allowed;
+}
+
+.note {
+  font-size: 0.9rem;
+  color: #003B5C;
+  opacity: 0.8;
+  line-height: 1.6;
+  text-align: left;
+  background-color: #F8F9FA;
+  padding: 1rem;
+  border-radius: 6px;
+}
+
+.note code {
+  background-color: #E5E5E5;
+  padding: 0.2rem 0.4rem;
+  border-radius: 3px;
+  font-size: 0.85em;
+}
+
+@media (max-width: 640px) {
+  .section {
+    padding: 2rem 1rem;
+  }
+
+  .title {
+    font-size: 2rem;
+  }
+}
+

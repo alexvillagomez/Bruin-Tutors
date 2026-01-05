@@ -1,0 +1,187 @@
+.header {
+  width: 100%;
+  background-color: #FFFFFF;
+  border-bottom: 1px solid #E5E5E5;
+  padding: 1rem 2rem;
+  display: flex;
+  align-items: center;
+  justify-content: space-between;
+  gap: 1.5rem;
+  flex-wrap: wrap;
+  box-sizing: border-box;
+}
+
+.logoLink {
+  display: flex;
+  align-items: center;
+  text-decoration: none;
+  transition: opacity 0.2s;
+}
+
+.logoLink:hover {
+  opacity: 0.8;
+}
+
+.logo {
+  height: 50px;
+  width: auto;
+  max-width: 200px;
+  object-fit: contain;
+  display: block;
+}
+
+.nav {
+  display: flex;
+  align-items: center;
+  gap: 1.5rem;
+  flex-wrap: wrap;
+  margin-left: auto;
+}
+
+.navLink {
+  color: #003B5C;
+  text-decoration: none;
+  font-size: 1rem;
+  transition: opacity 0.2s;
+  white-space: nowrap;
+}
+
+.navLink:hover {
+  opacity: 0.7;
+}
+
+.rightSection {
+  display: flex;
+  align-items: center;
+  gap: 1rem;
+  flex-wrap: wrap;
+}
+
+.dashboardLink {
+  color: #003B5C;
+  text-decoration: none;
+  font-size: 1rem;
+  transition: opacity 0.2s;
+  white-space: nowrap;
+}
+
+.dashboardLink:hover {
+  opacity: 0.7;
+}
+
+.authButton {
+  background: transparent;
+  color: #003B5C;
+  border: 1px solid #003B5C;
+  padding: 0.5rem 1rem;
+  border-radius: 6px;
+  font-size: 0.9rem;
+  font-weight: 500;
+  cursor: pointer;
+  text-decoration: none;
+  display: inline-block;
+  white-space: nowrap;
+  transition: background-color 0.2s, color 0.2s;
+}
+
+.authButton:hover {
+  background-color: #003B5C;
+  color: #FFFFFF;
+}
+
+.bookButton {
+  background-color: #C69214;
+  color: #FFFFFF;
+  text-decoration: none;
+  padding: 0.75rem 1.5rem;
+  border-radius: 6px;
+  font-size: 1rem;
+  font-weight: 600;
+  transition: filter 0.2s;
+  display: inline-block;
+  white-space: nowrap;
+}
+
+.bookButton:hover {
+  filter: brightness(0.9);
+}
+
+@media (max-width: 768px) {
+  .header {
+    padding: 1rem;
+    gap: 1rem;
+    justify-content: center;
+  }
+  
+  .logo {
+    max-width: 150px;
+  }
+  
+  .nav {
+    gap: 1rem;
+    justify-content: center;
+    width: 100%;
+    margin-left: 0;
+  }
+  
+  .navLink {
+    font-size: 0.9rem;
+  }
+  
+  .rightSection {
+    width: 100%;
+    justify-content: center;
+    flex-wrap: wrap;
+    gap: 0.75rem;
+  }
+  
+  .authButton {
+    font-size: 0.85rem;
+    padding: 0.5rem 0.75rem;
+  }
+  
+  .dashboardLink {
+    font-size: 0.85rem;
+  }
+  
+  .bookButton {
+    padding: 0.625rem 1.25rem;
+    font-size: 0.9rem;
+    width: 100%;
+    text-align: center;
+  }
+}
+
+@media (max-width: 480px) {
+  .header {
+    padding: 0.75rem;
+  }
+  
+  .logo {
+    max-width: 120px;
+  }
+  
+  .nav {
+    flex-direction: column;
+    gap: 0.75rem;
+    width: 100%;
+    margin-left: 0;
+  }
+  
+  .navLink {
+    font-size: 0.85rem;
+  }
+  
+  .rightSection {
+    flex-direction: column;
+    width: 100%;
+  }
+  
+  .authButton,
+  .dashboardLink,
+  .bookButton {
+    width: 100%;
+    text-align: center;
+  }
+}
+

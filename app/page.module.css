@@ -1,0 +1,549 @@
+.main {
+  width: 100%;
+  margin: 0;
+  padding: 0;
+}
+
+/* SECTION 1: HERO */
+.hero {
+  background-color: #FFFFFF;
+  padding: 4rem 2rem;
+  max-width: 1200px;
+  margin: 0 auto;
+}
+
+.heroContent {
+  text-align: center;
+  max-width: 800px;
+  margin: 0 auto;
+}
+
+.heroHeadline {
+  font-size: 2.5rem;
+  font-weight: 700;
+  color: #003B5C;
+  margin: 0 0 1.5rem 0;
+  line-height: 1.2;
+}
+
+.heroSubheadline {
+  font-size: 1.25rem;
+  color: #003B5C;
+  margin: 0 0 2.5rem 0;
+  line-height: 1.6;
+  opacity: 0.9;
+}
+
+.heroCTAs {
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+  gap: 1rem;
+}
+
+.primaryCTA {
+  background-color: #C69214;
+  color: #FFFFFF;
+  text-decoration: none;
+  padding: 1rem 2.5rem;
+  border-radius: 6px;
+  font-size: 1.125rem;
+  font-weight: 600;
+  transition: filter 0.2s;
+  display: inline-block;
+}
+
+.primaryCTA:hover {
+  filter: brightness(0.9);
+}
+
+.secondaryText {
+  font-size: 0.95rem;
+  color: #003B5C;
+  margin: 0;
+  opacity: 0.8;
+}
+
+/* SECTION 2: TRUST SNAPSHOT */
+.trustSnapshot {
+  background-color: #F8F9FA;
+  padding: 4rem 2rem;
+}
+
+.trustContent {
+  max-width: 1200px;
+  margin: 0 auto;
+}
+
+.sectionTitle {
+  font-size: 2rem;
+  font-weight: 700;
+  color: #003B5C;
+  text-align: center;
+  margin: 0 0 3rem 0;
+}
+
+.trustGrid {
+  display: grid;
+  grid-template-columns: repeat(auto-fit, minmax(250px, 1fr));
+  gap: 2rem;
+}
+
+.trustItem {
+  background-color: #FFFFFF;
+  padding: 2rem;
+  border-radius: 8px;
+  border: 1px solid #E5E5E5;
+}
+
+.trustTitle {
+  font-size: 1.25rem;
+  font-weight: 600;
+  color: #003B5C;
+  margin: 0 0 0.75rem 0;
+}
+
+.trustText {
+  font-size: 1rem;
+  color: #003B5C;
+  margin: 0;
+  line-height: 1.6;
+  opacity: 0.85;
+}
+
+/* SECTION 3: SERVICES */
+.services {
+  background-color: #FFFFFF;
+  padding: 4rem 2rem;
+}
+
+.servicesContent {
+  max-width: 1200px;
+  margin: 0 auto;
+}
+
+.servicesGrid {
+  display: grid;
+  grid-template-columns: repeat(auto-fit, minmax(280px, 1fr));
+  gap: 2rem;
+}
+
+.servicePrimary {
+  background-color: #F8F9FA;
+  padding: 2.5rem;
+  border-radius: 8px;
+  border: 2px solid #C69214;
+}
+
+.serviceSecondary {
+  background-color: #F8F9FA;
+  padding: 2.5rem;
+  border-radius: 8px;
+  border: 1px solid #E5E5E5;
+}
+
+.serviceCard {
+  background-color: #F8F9FA;
+  padding: 2.5rem;
+  border-radius: 8px;
+  border: 1px solid #E5E5E5;
+}
+
+.serviceTitle {
+  font-size: 1.5rem;
+  font-weight: 600;
+  color: #003B5C;
+  margin: 0 0 1rem 0;
+}
+
+.serviceText {
+  font-size: 1rem;
+  color: #003B5C;
+  margin: 0;
+  line-height: 1.6;
+  opacity: 0.85;
+}
+
+/* SECTION 4: HOW IT WORKS */
+.howItWorks {
+  background-color: #F8F9FA;
+  padding: 4rem 2rem;
+}
+
+.howItWorksContent {
+  max-width: 1200px;
+  margin: 0 auto;
+}
+
+.stepsGrid {
+  display: grid;
+  grid-template-columns: repeat(3, 1fr);
+  gap: 2rem;
+}
+
+.step {
+  text-align: center;
+}
+
+.stepNumber {
+  width: 60px;
+  height: 60px;
+  background-color: #C69214;
+  color: #FFFFFF;
+  border-radius: 50%;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  font-size: 1.5rem;
+  font-weight: 700;
+  margin: 0 auto 1.5rem;
+}
+
+.stepTitle {
+  font-size: 1.25rem;
+  font-weight: 600;
+  color: #003B5C;
+  margin: 0 0 0.75rem 0;
+}
+
+.stepText {
+  font-size: 1rem;
+  color: #003B5C;
+  margin: 0;
+  line-height: 1.6;
+  opacity: 0.85;
+}
+
+/* SECTION 5: TUTORS PREVIEW */
+.tutorsPreview {
+  background-color: #FFFFFF;
+  padding: 4rem 2rem;
+}
+
+.tutorsContent {
+  max-width: 1200px;
+  margin: 0 auto;
+  text-align: center;
+}
+
+.tutorsIntro {
+  font-size: 1.125rem;
+  color: #003B5C;
+  margin: 0 0 3rem 0;
+  line-height: 1.6;
+  opacity: 0.9;
+  max-width: 700px;
+  margin-left: auto;
+  margin-right: auto;
+}
+
+.tutorsGrid {
+  display: grid;
+  grid-template-columns: repeat(auto-fit, minmax(280px, 1fr));
+  gap: 2rem;
+  margin-bottom: 3rem;
+}
+
+.tutorCard {
+  background-color: #F8F9FA;
+  padding: 2rem;
+  border-radius: 8px;
+  border: 1px solid #E5E5E5;
+}
+
+.tutorName {
+  font-size: 1.25rem;
+  font-weight: 600;
+  color: #003B5C;
+  margin: 0 0 0.75rem 0;
+}
+
+.tutorDetails {
+  font-size: 0.95rem;
+  color: #003B5C;
+  margin: 0;
+  line-height: 1.6;
+  opacity: 0.85;
+}
+
+.browseLink {
+  color: #003B5C;
+  text-decoration: none;
+  font-size: 1.125rem;
+  font-weight: 600;
+  transition: opacity 0.2s;
+  display: inline-block;
+}
+
+.browseLink:hover {
+  opacity: 0.7;
+}
+
+/* SECTION 6: RESULTS */
+.results {
+  background-color: #F8F9FA;
+  padding: 4rem 2rem;
+}
+
+.resultsContent {
+  max-width: 1200px;
+  margin: 0 auto;
+}
+
+.resultsGrid {
+  display: grid;
+  grid-template-columns: repeat(auto-fit, minmax(250px, 1fr));
+  gap: 2rem;
+}
+
+.resultItem {
+  background-color: #FFFFFF;
+  padding: 2rem;
+  border-radius: 8px;
+  border: 1px solid #E5E5E5;
+}
+
+.resultTitle {
+  font-size: 1.25rem;
+  font-weight: 600;
+  color: #003B5C;
+  margin: 0 0 0.75rem 0;
+}
+
+.resultText {
+  font-size: 1rem;
+  color: #003B5C;
+  margin: 0;
+  line-height: 1.6;
+  opacity: 0.85;
+}
+
+/* SECTION 7: FLEXIBILITY */
+.flexibility {
+  background-color: #FFFFFF;
+  padding: 4rem 2rem;
+}
+
+.flexibilityContent {
+  max-width: 1200px;
+  margin: 0 auto;
+}
+
+.flexibilityGrid {
+  display: grid;
+  grid-template-columns: repeat(2, 1fr);
+  gap: 2rem;
+}
+
+.flexibilityItem {
+  background-color: #F8F9FA;
+  padding: 2.5rem;
+  border-radius: 8px;
+  border: 1px solid #E5E5E5;
+}
+
+.flexibilityTitle {
+  font-size: 1.5rem;
+  font-weight: 600;
+  color: #003B5C;
+  margin: 0 0 1rem 0;
+}
+
+.flexibilityText {
+  font-size: 1rem;
+  color: #003B5C;
+  margin: 0;
+  line-height: 1.6;
+  opacity: 0.85;
+}
+
+.emailLink {
+  color: #C69214;
+  text-decoration: none;
+  font-weight: 500;
+  transition: opacity 0.2s;
+}
+
+.emailLink:hover {
+  opacity: 0.8;
+  text-decoration: underline;
+}
+
+/* SECTION 8: FINAL CTA */
+.finalCTA {
+  background-color: #003B5C;
+  padding: 4rem 2rem;
+  color: #FFFFFF;
+}
+
+.finalCTAContent {
+  max-width: 800px;
+  margin: 0 auto;
+  text-align: center;
+}
+
+.finalCTATitle {
+  font-size: 2rem;
+  font-weight: 700;
+  color: #FFFFFF;
+  margin: 0 0 1rem 0;
+}
+
+.finalCTAText {
+  font-size: 1.125rem;
+  color: #FFFFFF;
+  margin: 0 0 2.5rem 0;
+  opacity: 0.95;
+  line-height: 1.6;
+}
+
+.finalCTAButtons {
+  display: flex;
+  gap: 1rem;
+  justify-content: center;
+  flex-wrap: wrap;
+}
+
+.finalPrimaryCTA {
+  background-color: #C69214;
+  color: #FFFFFF;
+  text-decoration: none;
+  padding: 1rem 2.5rem;
+  border-radius: 6px;
+  font-size: 1.125rem;
+  font-weight: 600;
+  transition: filter 0.2s;
+  display: inline-block;
+}
+
+.finalPrimaryCTA:hover {
+  filter: brightness(0.9);
+}
+
+.finalSecondaryCTA {
+  background-color: transparent;
+  color: #FFFFFF;
+  text-decoration: none;
+  padding: 1rem 2.5rem;
+  border-radius: 6px;
+  font-size: 1.125rem;
+  font-weight: 600;
+  border: 2px solid #FFFFFF;
+  transition: background-color 0.2s;
+  display: inline-block;
+}
+
+.finalSecondaryCTA:hover {
+  background-color: rgba(255, 255, 255, 0.1);
+}
+
+/* Mobile Responsive */
+@media (max-width: 768px) {
+  .hero {
+    padding: 3rem 1.5rem;
+  }
+
+  .heroHeadline {
+    font-size: 2rem;
+  }
+
+  .heroSubheadline {
+    font-size: 1.125rem;
+  }
+
+  .primaryCTA {
+    padding: 0.875rem 2rem;
+    font-size: 1rem;
+    width: 100%;
+    max-width: 400px;
+  }
+
+  .trustSnapshot,
+  .services,
+  .howItWorks,
+  .tutorsPreview,
+  .results,
+  .flexibility {
+    padding: 3rem 1.5rem;
+  }
+
+  .sectionTitle {
+    font-size: 1.75rem;
+    margin-bottom: 2rem;
+  }
+
+  .trustGrid,
+  .resultsGrid {
+    grid-template-columns: 1fr;
+    gap: 1.5rem;
+  }
+
+  .servicesGrid {
+    grid-template-columns: 1fr;
+  }
+
+  .stepsGrid {
+    grid-template-columns: 1fr;
+    gap: 2rem;
+  }
+
+  .flexibilityGrid {
+    grid-template-columns: 1fr;
+  }
+
+  .finalCTA {
+    padding: 3rem 1.5rem;
+  }
+
+  .finalCTATitle {
+    font-size: 1.75rem;
+  }
+
+  .finalCTAButtons {
+    flex-direction: column;
+    align-items: stretch;
+  }
+
+  .finalPrimaryCTA,
+  .finalSecondaryCTA {
+    width: 100%;
+  }
+}
+
+@media (max-width: 480px) {
+  .hero {
+    padding: 2rem 1rem;
+  }
+
+  .heroHeadline {
+    font-size: 1.75rem;
+  }
+
+  .heroSubheadline {
+    font-size: 1rem;
+  }
+
+  .trustSnapshot,
+  .services,
+  .howItWorks,
+  .tutorsPreview,
+  .results,
+  .flexibility,
+  .finalCTA {
+    padding: 2rem 1rem;
+  }
+
+  .sectionTitle {
+    font-size: 1.5rem;
+  }
+
+  .trustItem,
+  .servicePrimary,
+  .serviceSecondary,
+  .tutorCard,
+  .resultItem,
+  .flexibilityItem {
+    padding: 1.5rem;
+  }
+}
+

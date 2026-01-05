@@ -1,0 +1,390 @@
+.calendarContainer {
+  width: 100%;
+  margin-bottom: 2rem;
+}
+
+.navigation {
+  display: flex;
+  align-items: center;
+  justify-content: space-between;
+  gap: 1rem;
+  margin-bottom: 1.5rem;
+  flex-wrap: wrap;
+}
+
+.navButton {
+  background-color: #FFFFFF;
+  border: 1px solid #E5E5E5;
+  color: #003B5C;
+  padding: 0.5rem 1rem;
+  border-radius: 6px;
+  font-size: 0.95rem;
+  font-weight: 500;
+  cursor: pointer;
+  transition: all 0.2s;
+}
+
+.navButton:hover {
+  border-color: #C69214;
+  color: #C69214;
+}
+
+.weekRange {
+  font-size: 1rem;
+  font-weight: 600;
+  color: #003B5C;
+  flex: 1;
+  text-align: center;
+}
+
+.todayButton {
+  background-color: #F8F9FA;
+  border: 1px solid #E5E5E5;
+  color: #003B5C;
+  padding: 0.5rem 1rem;
+  border-radius: 6px;
+  font-size: 0.95rem;
+  font-weight: 500;
+  cursor: pointer;
+  transition: all 0.2s;
+}
+
+.todayButton:hover {
+  background-color: #E5E5E5;
+}
+
+.notice {
+  background-color: #FFFBF0;
+  border: 1px solid #C69214;
+  border-radius: 6px;
+  padding: 1rem;
+  margin-bottom: 1.5rem;
+  text-align: center;
+}
+
+.notice p {
+  margin: 0;
+  color: #003B5C;
+  font-size: 0.95rem;
+  line-height: 1.5;
+}
+
+.calendarWrapper {
+  overflow-x: auto;
+  border: 1px solid #E5E5E5;
+  border-radius: 8px;
+  background-color: #FFFFFF;
+}
+
+.calendarGrid {
+  display: grid;
+  grid-template-columns: 80px repeat(7, 1fr);
+  min-width: 800px;
+}
+
+.timeGutter {
+  position: sticky;
+  left: 0;
+  background-color: #F8F9FA;
+  z-index: 10;
+  border-right: 2px solid #E5E5E5;
+}
+
+.timeGutterHeader {
+  height: 60px;
+  border-bottom: 1px solid #E5E5E5;
+  background-color: #F8F9FA;
+}
+
+.timeGutterCell {
+  height: 50px;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  font-size: 0.85rem;
+  color: #003B5C;
+  border-bottom: 1px solid #F0F0F0;
+  padding: 0 0.5rem;
+}
+
+.dayColumn {
+  display: flex;
+  flex-direction: column;
+  border-right: 1px solid #E5E5E5;
+}
+
+.dayColumn:last-child {
+  border-right: none;
+}
+
+.dayHeader {
+  height: 60px;
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+  justify-content: center;
+  background-color: #F8F9FA;
+  border-bottom: 2px solid #E5E5E5;
+  padding: 0.5rem;
+  position: sticky;
+  top: 0;
+  z-index: 5;
+}
+
+.dayHeader.today {
+  background-color: #FFFBF0;
+  border-bottom-color: #C69214;
+}
+
+.dayName {
+  font-size: 0.75rem;
+  font-weight: 600;
+  color: #003B5C;
+  text-transform: uppercase;
+  letter-spacing: 0.5px;
+  margin-bottom: 0.25rem;
+}
+
+.dayNumber {
+  font-size: 1.25rem;
+  font-weight: 700;
+  color: #003B5C;
+}
+
+.dayMonth {
+  font-size: 0.7rem;
+  color: #003B5C;
+  opacity: 0.7;
+  margin-top: 0.25rem;
+}
+
+.timeSlotCell {
+  height: 50px;
+  border: 1px solid #F0F0F0;
+  background-color: #FFFFFF;
+  cursor: pointer;
+  transition: all 0.15s;
+  position: relative;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  padding: 0;
+}
+
+.timeSlotCell:hover:not(:disabled) {
+  background-color: #F8F9FA;
+  border-color: #C69214;
+}
+
+.timeSlotCell.available {
+  background-color: #FFFFFF;
+}
+
+.timeSlotCell.available:hover:not(:disabled) {
+  background-color: #FFFBF0;
+  border-color: #C69214;
+  transform: scale(1.02);
+}
+
+.timeSlotCell.selected {
+  background-color: #C69214;
+  border-color: #C69214;
+  color: #FFFFFF;
+  z-index: 2;
+}
+
+.timeSlotCell.selected:hover {
+  background-color: #B88212;
+}
+
+.timeSlotCell.past {
+  background-color: #F8F9FA;
+  opacity: 0.5;
+  cursor: not-allowed;
+}
+
+.timeSlotCell:disabled {
+  background-color: #F8F9FA;
+  opacity: 0.4;
+  cursor: not-allowed;
+  border-color: #E5E5E5;
+}
+
+.selectedIndicator {
+  font-size: 1.2rem;
+  font-weight: bold;
+}
+
+.selectedDetails {
+  margin-top: 1.5rem;
+  padding: 1rem;
+  background-color: #F8F9FA;
+  border-radius: 6px;
+  border: 1px solid #E5E5E5;
+}
+
+.selectedInfo {
+  color: #003B5C;
+  font-size: 1rem;
+  line-height: 1.6;
+}
+
+.tutorName {
+  color: #C69214;
+  font-weight: 600;
+}
+
+.timezoneLabel {
+  margin-top: 0.75rem;
+  font-size: 0.8rem;
+  color: #003B5C;
+  opacity: 0.7;
+  text-align: center;
+}
+
+/* Mobile Day Navigation */
+.mobileDayNav {
+  display: none;
+  align-items: center;
+  justify-content: space-between;
+  gap: 1rem;
+  margin-bottom: 1rem;
+  padding: 0.75rem;
+  background-color: #F8F9FA;
+  border-radius: 6px;
+  border: 1px solid #E5E5E5;
+}
+
+.mobileNavButton {
+  background-color: #FFFFFF;
+  border: 1px solid #E5E5E5;
+  color: #003B5C;
+  width: 40px;
+  height: 40px;
+  border-radius: 50%;
+  font-size: 1.2rem;
+  font-weight: bold;
+  cursor: pointer;
+  transition: all 0.2s;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+}
+
+.mobileNavButton:hover:not(:disabled) {
+  border-color: #C69214;
+  color: #C69214;
+  background-color: #FFFBF0;
+}
+
+.mobileNavButton:disabled {
+  opacity: 0.4;
+  cursor: not-allowed;
+}
+
+.mobileDayRange {
+  flex: 1;
+  text-align: center;
+  font-size: 0.95rem;
+  font-weight: 600;
+  color: #003B5C;
+}
+
+/* Mobile visibility classes */
+.mobileHidden {
+  display: none;
+}
+
+/* Mobile Responsive */
+@media (max-width: 768px) {
+  .mobileDayNav {
+    display: flex;
+  }
+
+  .calendarGrid {
+    grid-template-columns: 60px repeat(3, 1fr);
+    min-width: 500px;
+  }
+
+  /* Hide day columns that are not visible on mobile */
+  .dayColumn.mobileHidden {
+    display: none;
+  }
+
+  /* Show visible day columns */
+  .dayColumn.mobileVisible {
+    display: flex;
+  }
+}
+
+/* Desktop: always show all days */
+@media (min-width: 769px) {
+  .dayColumn.mobileHidden,
+  .dayColumn.mobileVisible {
+    display: flex;
+  }
+}
+
+  .timeGutterCell {
+    font-size: 0.75rem;
+    padding: 0 0.25rem;
+  }
+
+  .dayHeader {
+    height: 50px;
+    padding: 0.25rem;
+  }
+
+  .dayName {
+    font-size: 0.7rem;
+  }
+
+  .dayNumber {
+    font-size: 1rem;
+  }
+
+  .dayMonth {
+    font-size: 0.65rem;
+  }
+
+  .timeSlotCell {
+    height: 45px;
+  }
+
+  .navigation {
+    flex-wrap: wrap;
+    gap: 0.5rem;
+  }
+
+  .weekRange {
+    font-size: 0.9rem;
+    width: 100%;
+    order: -1;
+  }
+
+  .navButton,
+  .todayButton {
+    font-size: 0.85rem;
+    padding: 0.4rem 0.75rem;
+  }
+}
+
+@media (max-width: 480px) {
+  .calendarGrid {
+    grid-template-columns: 50px repeat(3, 1fr);
+    min-width: 500px;
+  }
+
+  .timeGutterCell {
+    font-size: 0.7rem;
+  }
+
+  .dayHeader {
+    height: 45px;
+  }
+
+  .timeSlotCell {
+    height: 40px;
+  }
+}
+

@@ -1,0 +1,215 @@
+.main {
+  width: 100%;
+  margin: 0;
+  padding: 0;
+}
+
+.servicesSection {
+  background-color: #FFFFFF;
+  padding: 4rem 2rem;
+  min-height: calc(100vh - 200px);
+}
+
+.servicesContent {
+  max-width: 900px;
+  margin: 0 auto;
+}
+
+.headline {
+  font-size: 2.5rem;
+  font-weight: 700;
+  color: #003B5C;
+  margin: 0 0 1.5rem 0;
+  line-height: 1.2;
+  text-align: center;
+}
+
+.intro {
+  font-size: 1.25rem;
+  color: #003B5C;
+  line-height: 1.6;
+  margin: 0 0 3rem 0;
+  text-align: center;
+  opacity: 0.9;
+}
+
+.section {
+  margin-bottom: 3rem;
+}
+
+.sectionTitle {
+  font-size: 1.5rem;
+  font-weight: 600;
+  color: #003B5C;
+  margin: 0 0 1rem 0;
+}
+
+.paragraph {
+  font-size: 1.125rem;
+  color: #003B5C;
+  line-height: 1.8;
+  margin: 0;
+  opacity: 0.9;
+}
+
+.list {
+  list-style: none;
+  padding: 0;
+  margin: 0;
+  display: flex;
+  flex-direction: column;
+  gap: 0.75rem;
+}
+
+.list li {
+  font-size: 1.125rem;
+  color: #003B5C;
+  line-height: 1.6;
+  opacity: 0.9;
+  padding-left: 1.5rem;
+  position: relative;
+}
+
+.list li::before {
+  content: "•";
+  color: #C69214;
+  font-weight: bold;
+  position: absolute;
+  left: 0;
+}
+
+.subjectsGrid {
+  display: grid;
+  grid-template-columns: repeat(2, 1fr);
+  gap: 2rem;
+}
+
+.ctaContainer {
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+  gap: 1rem;
+  margin-top: 4rem;
+  padding-top: 3rem;
+  border-top: 1px solid #E5E5E5;
+}
+
+.primaryCTA {
+  background-color: #C69214;
+  color: #FFFFFF;
+  text-decoration: none;
+  padding: 1rem 2.5rem;
+  border-radius: 6px;
+  font-size: 1.125rem;
+  font-weight: 600;
+  transition: filter 0.2s;
+  display: inline-block;
+  text-align: center;
+}
+
+.primaryCTA:hover {
+  filter: brightness(0.9);
+}
+
+.secondaryCTA {
+  color: #003B5C;
+  text-decoration: none;
+  font-size: 1rem;
+  font-weight: 500;
+  transition: opacity 0.2s;
+  display: inline-block;
+}
+
+.secondaryCTA:hover {
+  opacity: 0.7;
+  text-decoration: underline;
+}
+
+/* Mobile Responsive */
+@media (max-width: 768px) {
+  .servicesSection {
+    padding: 3rem 1.5rem;
+  }
+
+  .headline {
+    font-size: 2rem;
+    margin-bottom: 1.25rem;
+  }
+
+  .intro {
+    font-size: 1.125rem;
+    margin-bottom: 2.5rem;
+  }
+
+  .section {
+    margin-bottom: 2.5rem;
+  }
+
+  .sectionTitle {
+    font-size: 1.375rem;
+  }
+
+  .paragraph {
+    font-size: 1rem;
+    line-height: 1.7;
+  }
+
+  .list li {
+    font-size: 1rem;
+  }
+
+  .subjectsGrid {
+    grid-template-columns: 1fr;
+    gap: 1.5rem;
+  }
+
+  .ctaContainer {
+    margin-top: 3rem;
+    padding-top: 2.5rem;
+  }
+
+  .primaryCTA {
+    padding: 0.875rem 2rem;
+    font-size: 1rem;
+    width: 100%;
+    max-width: 400px;
+  }
+}
+
+@media (max-width: 480px) {
+  .servicesSection {
+    padding: 2rem 1rem;
+  }
+
+  .headline {
+    font-size: 1.75rem;
+  }
+
+  .intro {
+    font-size: 1rem;
+    margin-bottom: 2rem;
+  }
+
+  .section {
+    margin-bottom: 2rem;
+  }
+
+  .sectionTitle {
+    font-size: 1.25rem;
+  }
+
+  .paragraph {
+    font-size: 0.95rem;
+  }
+
+  .list li {
+    font-size: 0.95rem;
+    padding-left: 1.25rem;
+  }
+
+  .ctaContainer {
+    margin-top: 2.5rem;
+    padding-top: 2rem;
+  }
+}
+

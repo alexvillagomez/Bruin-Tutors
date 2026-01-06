@@ -80,7 +80,7 @@ export async function POST(request: Request) {
     const timeMin = now.toISOString()
     const timeMax = new Date(now.getTime() + 14 * 24 * 60 * 60 * 1000).toISOString()
 
-    let availabilityEvents = []
+    let availabilityEvents: any[] = []
     try {
       availabilityEvents = await getCalendarEvents(
         tutor.availabilityCalendarId,
@@ -95,7 +95,7 @@ export async function POST(request: Request) {
       )
     }
 
-    let bookingEvents = []
+    let bookingEvents: any[] = []
     try {
       if (tutor.bookingsCalendarId) {
         bookingEvents = await getCalendarEvents(

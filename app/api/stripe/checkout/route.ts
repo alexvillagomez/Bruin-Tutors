@@ -114,6 +114,11 @@ export async function POST(request: Request) {
       metadata: {},
     }
 
+    // Ensure metadata is defined (TypeScript safety)
+    if (!sessionParams.metadata) {
+      sessionParams.metadata = {}
+    }
+
     // Add required metadata for booking creation
     if (tutorSlug) {
       sessionParams.metadata.tutorId = tutorSlug // Use tutorId (same as tutorSlug in our system)

@@ -153,6 +153,16 @@ export async function POST(request: Request) {
       let calendarEventLink: string | null = null
       const calendarConnected = session.metadata?.calendarConnected === 'true'
       
+      console.log('🔍 Calendar event creation check:', {
+        calendarConnectedFromMetadata: session.metadata?.calendarConnected,
+        calendarConnectedParsed: calendarConnected,
+        tutorCalendarConnected: tutor.calendarConnected,
+        hasBookingsCalendarId: !!tutor.bookingsCalendarId,
+        bookingsCalendarId: tutor.bookingsCalendarId,
+        tutorId: tutor.id,
+        willCreateEvent: calendarConnected && !!tutor.bookingsCalendarId,
+      })
+      
       if (calendarConnected && tutor.bookingsCalendarId) {
         try {
           const eventTitle = `Bruin Tutors Session — ${studentName}`
@@ -233,8 +243,17 @@ export async function POST(request: Request) {
             error: calendarError.message,
             stack: calendarError.stack,
             calendarId: tutor.bookingsCalendarId,
+            sessionId: session.id,
           })
+          
+          // Log specific OAuth token errors prominently
+          if (calendarError.message?.includes('GOOGLE_OAUTH_TOKEN_EXPIRED')) {
+            console.error('🚨 CRITICAL: Google OAuth token expired. Calendar events cannot be created until token is regenerated.')
+            console.error('🚨 Run: npx tsx scripts/google-refresh-token.ts')
+          }
+          
           // Don't fail the webhook if calendar event creation fails
+          // Payment was successful, but calendar event creation failed
         }
       } else {
         console.log('⚠️ Calendar event not created - conditions not met:', {
@@ -261,6 +280,8 @@ export async function POST(request: Request) {
         calendarEventId: googleCalendarEventId,
         calendarEventLink,
         inviteSent: !!(parentEmail || studentEmail) && !!googleCalendarEventId,
+        calendarEventCreated: !!googleCalendarEventId,
+        warning: !googleCalendarEventId && calendarConnected ? 'Calendar event creation failed. Check server logs for details.' : undefined,
       }
       
       console.log('✅ Webhook processing complete, returning response:', response)

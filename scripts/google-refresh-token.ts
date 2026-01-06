@@ -44,8 +44,25 @@ async function main() {
     access_type: "offline",      // REQUIRED for refresh token
     prompt: "consent",           // Forces refresh_token even if previously approved (usually)
     scope: SCOPES,
+    response_type: "code",       // Explicitly set response_type
   });
 
+  // Validate the URL contains required parameters
+  if (!authUrl.includes("response_type=code")) {
+    console.error("❌ ERROR: Generated auth URL is missing response_type parameter!");
+    console.error("This may indicate an issue with the googleapis library.");
+    process.exitCode = 1;
+    return;
+  }
+
+  console.log("\n📋 Configuration Check:");
+  console.log("  Client ID:", CLIENT_ID.substring(0, 20) + "...");
+  console.log("  Redirect URI:", REDIRECT_URI);
+  console.log("\n⚠️  IMPORTANT: Make sure this redirect URI is EXACTLY added in Google Cloud Console:");
+  console.log("  1. Go to https://console.cloud.google.com/apis/credentials");
+  console.log("  2. Find your OAuth 2.0 Client ID");
+  console.log("  3. Under 'Authorized redirect URIs', ensure this URI is listed:");
+  console.log("     " + REDIRECT_URI);
   console.log("\n1) Open this URL in an incognito window:\n");
   console.log(authUrl);
   console.log("\n2) Log in as: bruintutors.scheduling@gmail.com");

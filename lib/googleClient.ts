@@ -151,6 +151,11 @@ export async function createCalendarEvent(
       response: error.response?.data,
     })
     
+    // Check for OAuth token issues
+    if (error.response?.data?.error === 'invalid_grant') {
+      throw new Error('GOOGLE_OAUTH_TOKEN_EXPIRED: The Google OAuth refresh token has expired or been revoked. Please regenerate it using: npx tsx scripts/google-refresh-token.ts')
+    }
+    
     // Provide more helpful error messages
     if (error.code === 404) {
       throw new Error(`Calendar not found: ${calendarId}. Please check that the calendar ID is correct.`)

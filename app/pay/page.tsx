@@ -1,10 +1,10 @@
 'use client'
 
-import { useState } from 'react'
+import { useState, Suspense } from 'react'
 import { useSearchParams } from 'next/navigation'
 import styles from './page.module.css'
 
-export default function PayPage() {
+function PayPageContent() {
   const searchParams = useSearchParams()
   const tutorSlug = searchParams.get('tutor')
   const [loading, setLoading] = useState(false)
@@ -85,6 +85,14 @@ export default function PayPage() {
         </div>
       </section>
     </main>
+  )
+}
+
+export default function PayPage() {
+  return (
+    <Suspense fallback={<div>Loading...</div>}>
+      <PayPageContent />
+    </Suspense>
   )
 }
 

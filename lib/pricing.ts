@@ -110,11 +110,11 @@ export function calculateHourlyPriceCents(params: PricingParams): {
     },
   }
   
-  // Original code (commented out for testing):
-  // const baseCents = params.baseRateCents ?? 5000 // Default to $50 if not specified
+  // Base rate (default to $50 if not specified)
+  const baseCents = params.baseRateCents ?? 5000
   
   // Compute days in advance
-  const now = params.nowISO !== undefined ? new Date(params.nowISO) : new Date()
+  const now = params.nowISO ? new Date(params.nowISO as string) : new Date()
   const daysInAdvance = computeDaysInAdvance(params.startISO, now)
   
   // Calculate lead-time add-on

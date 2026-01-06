@@ -1,9 +1,9 @@
 'use client'
 
-import { useEffect } from 'react'
+import { useEffect, Suspense } from 'react'
 import { useSearchParams, useRouter } from 'next/navigation'
 
-export default function BookPage() {
+function BookPageContent() {
   const searchParams = useSearchParams()
   const router = useRouter()
   const tutorSlug = searchParams.get('tutor')
@@ -27,6 +27,14 @@ export default function BookPage() {
     }}>
       <p>Redirecting to booking page...</p>
     </main>
+  )
+}
+
+export default function BookPage() {
+  return (
+    <Suspense fallback={<div>Loading...</div>}>
+      <BookPageContent />
+    </Suspense>
   )
 }
 

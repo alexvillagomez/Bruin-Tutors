@@ -1,6 +1,6 @@
 'use client'
 
-import { useEffect, useState, useMemo, useRef } from 'react'
+import { useEffect, useState, useMemo, useRef, Suspense } from 'react'
 import { useSearchParams } from 'next/navigation'
 import Link from 'next/link'
 import TutorCard from '@/components/TutorCard'
@@ -9,7 +9,7 @@ import { slugifySubject } from '@/lib/seo'
 import type { TutorPublic } from '@/lib/types'
 import styles from './page.module.css'
 
-export default function TutorsPage() {
+function TutorsPageContent() {
   const searchParams = useSearchParams()
   const focusedTutorId = searchParams.get('tutor')
   const tutorRef = useRef<HTMLDivElement>(null)
@@ -176,5 +176,13 @@ export default function TutorsPage() {
         </div>
       </section>
     </main>
+  )
+}
+
+export default function TutorsPage() {
+  return (
+    <Suspense fallback={<div>Loading...</div>}>
+      <TutorsPageContent />
+    </Suspense>
   )
 }

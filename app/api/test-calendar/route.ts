@@ -30,50 +30,64 @@ export async function GET(request: Request) {
     }
 
     // Test availability calendar
-    try {
-      const availabilityEvents = await getCalendarEvents(
-        tutor.availabilityCalendarId,
-        timeMin,
-        timeMax
-      )
-      results.tests.availability = {
-        success: true,
-        eventCount: availabilityEvents.length,
-        events: availabilityEvents.map(e => ({
-          summary: e.summary,
-          start: e.start?.dateTime || e.start?.date,
-          end: e.end?.dateTime || e.end?.date
-        }))
+    if (tutor.availabilityCalendarId) {
+      try {
+        const availabilityEvents = await getCalendarEvents(
+          tutor.availabilityCalendarId,
+          timeMin,
+          timeMax
+        )
+        results.tests.availability = {
+          success: true,
+          eventCount: availabilityEvents.length,
+          events: availabilityEvents.map(e => ({
+            summary: e.summary,
+            start: e.start?.dateTime || e.start?.date,
+            end: e.end?.dateTime || e.end?.date
+          }))
+        }
+      } catch (error: any) {
+        results.tests.availability = {
+          success: false,
+          error: error.message,
+          code: error.code
+        }
       }
-    } catch (error: any) {
+    } else {
       results.tests.availability = {
         success: false,
-        error: error.message,
-        code: error.code
+        error: 'Availability calendar ID not configured'
       }
     }
 
     // Test bookings calendar
-    try {
-      const bookingEvents = await getCalendarEvents(
-        tutor.bookingsCalendarId,
-        timeMin,
-        timeMax
-      )
-      results.tests.bookings = {
-        success: true,
-        eventCount: bookingEvents.length,
-        events: bookingEvents.map(e => ({
-          summary: e.summary,
-          start: e.start?.dateTime || e.start?.date,
-          end: e.end?.dateTime || e.end?.date
-        }))
+    if (tutor.bookingsCalendarId) {
+      try {
+        const bookingEvents = await getCalendarEvents(
+          tutor.bookingsCalendarId,
+          timeMin,
+          timeMax
+        )
+        results.tests.bookings = {
+          success: true,
+          eventCount: bookingEvents.length,
+          events: bookingEvents.map(e => ({
+            summary: e.summary,
+            start: e.start?.dateTime || e.start?.date,
+            end: e.end?.dateTime || e.end?.date
+          }))
+        }
+      } catch (error: any) {
+        results.tests.bookings = {
+          success: false,
+          error: error.message,
+          code: error.code
+        }
       }
-    } catch (error: any) {
+    } else {
       results.tests.bookings = {
         success: false,
-        error: error.message,
-        code: error.code
+        error: 'Bookings calendar ID not configured'
       }
     }
 

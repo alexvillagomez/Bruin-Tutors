@@ -31,7 +31,10 @@
     "bookingBlurb": "Third-year UCLA student specializing in AP Chemistry, AP Language, and AP Literature. Experienced peer writing tutor and teacher's assistant.",
     "photoUrl": "/lauren_chen_photo.jpg",
     "baseRateCents": 5500,
-    "calendarConnected": false,
+    "availabilityCalendarId": "c_900eef173deee272dcf8f3a02b9d930ea2160d7824071f318268e8ee11a3861f@group.calendar.google.com",
+    "bookingsCalendarId": "c_1d07a1b6643cb962772ebbb417baf2898d5329088e7c89fdc7934bf6d74cead4@group.calendar.google.com",
+    "calendarConnected": true,
+    "zoomLink": "https://ucla.zoom.us/j/7148649362",
     "isActive": true,
     "sortOrder": 2
   },
@@ -46,7 +49,10 @@
     "bookingBlurb": "Third-year UCLA student specializing in AP Biology and AP Physics 1. Learning Assistant for undergraduate biology course.",
     "photoUrl": "/lisa_ishida_photo.jpg",
     "baseRateCents": 5500,
-    "calendarConnected": false,
+    "availabilityCalendarId": "c_b8f91ffdadaf0ac128b75425010032d2f65b41444a28407573099e1cad2331bd@group.calendar.google.com",
+    "bookingsCalendarId": "c_d4dcad492a67499b3909258e3db85bed680e879fd9da3d027b73925ddfdba2d5@group.calendar.google.com",
+    "calendarConnected": true,
+    "zoomLink": "https://ucla.zoom.us/j/9495053438",
     "isActive": true,
     "sortOrder": 3
   }

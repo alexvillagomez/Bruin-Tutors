@@ -260,7 +260,7 @@ export async function POST(request: Request) {
         message: 'Payment processed successfully',
         calendarEventId: googleCalendarEventId,
         calendarEventLink,
-        inviteSent: !!userEmail && !!googleCalendarEventId,
+        inviteSent: !!(parentEmail || studentEmail) && !!googleCalendarEventId,
       }
       
       console.log('✅ Webhook processing complete, returning response:', response)

@@ -40,5 +40,6 @@ export type BookingRequest = {
   course: string
   helpText: string
   materialsLink?: string
+  fileNames?: string // Optional comma-separated list of uploaded file names
 }
 

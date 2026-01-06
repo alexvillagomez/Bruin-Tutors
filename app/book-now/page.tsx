@@ -5,18 +5,8 @@ import { useSearchParams, useRouter } from 'next/navigation'
 import Link from 'next/link'
 import { calculateHourlyPriceCents } from '@/lib/pricing'
 import BookingTutorHeader from '@/components/BookingTutorHeader'
+import type { Tutor } from '@/lib/types'
 import styles from './page.module.css'
-
-type Tutor = {
-  id: string
-  displayName: string
-  subjects: string[]
-  blurb: string
-  bookingBlurb?: string
-  baseRateCents?: number // Base hourly rate in cents
-  calendarTitleForPricing?: string // Placeholder calendar title for WTP rating until real calendar integration
-  calendarConnected: boolean
-}
 
 type SessionLength = 60 | 15 | null // Only 60-minute sessions and 15-minute consultations
 type BookingData = {

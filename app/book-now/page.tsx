@@ -1,6 +1,6 @@
 'use client'
 
-import { useState, useEffect, useMemo } from 'react'
+import { useState, useEffect, useMemo, Suspense } from 'react'
 import { useSearchParams, useRouter } from 'next/navigation'
 import Link from 'next/link'
 import { calculateHourlyPriceCents } from '@/lib/pricing'
@@ -24,7 +24,7 @@ type BookingData = {
   files: File[] // For file uploads
 }
 
-export default function BookNow() {
+function BookNowContent() {
   const searchParams = useSearchParams()
   const router = useRouter()
   const tutorSlug = searchParams.get('tutor')
@@ -1010,5 +1010,13 @@ export default function BookNow() {
         </div>
       </section>
     </main>
+  )
+}
+
+export default function BookNow() {
+  return (
+    <Suspense fallback={<div>Loading...</div>}>
+      <BookNowContent />
+    </Suspense>
   )
 }

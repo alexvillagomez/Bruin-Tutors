@@ -6,6 +6,8 @@ import { SessionLength } from '@/lib/types'
 
 const TIMEZONE = process.env.APP_TIMEZONE || 'America/Los_Angeles'
 
+export const dynamic = 'force-dynamic'
+
 export async function GET(request: Request) {
   try {
     const { searchParams } = new URL(request.url)

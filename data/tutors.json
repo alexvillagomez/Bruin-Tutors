@@ -34,6 +34,21 @@
     "calendarConnected": false,
     "isActive": true,
     "sortOrder": 2
+  },
+  {
+    "id": "lisa-ishida",
+    "displayName": "Lisa Ishida",
+    "subjects": [
+      "AP Biology",
+      "AP Physics 1"
+    ],
+    "blurb": "Hi! My name is Lisa Ishida, and I am a third-year psychobiology major at UCLA with a strong academic foundation in both biology and physics. I have completed all core biology and core physics coursework at UCLA, giving me a deep understanding of the material that underlies AP Biology and AP Physics 1. In addition to my coursework, I currently serve as a Learning Assistant for an undergraduate biology course at UCLA, where I work closely with students to clarify challenging concepts, reinforce problem-solving strategies, and build confidence in their academic abilities. As a tutor, I specialize in AP Biology and AP Physics 1, and I focus on helping students develop strong conceptual understanding, effective study strategies, and exam-ready skills. My approach emphasizes clear explanations, step-by-step problem solving, and adapting lessons to each student's learning style to ensure long-term success.",
+    "bookingBlurb": "Third-year UCLA student specializing in AP Biology and AP Physics 1. Learning Assistant for undergraduate biology course.",
+    "photoUrl": "/lisa_ishida_photo.jpg",
+    "baseRateCents": 5500,
+    "calendarConnected": false,
+    "isActive": true,
+    "sortOrder": 3
   }
 ]
 

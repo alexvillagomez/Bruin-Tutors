@@ -11,6 +11,8 @@ export type Tutor = {
   bookingsCalendarId?: string // Optional - not all tutors have calendar connected
   calendarConnected: boolean // Indicates if Google Calendar is set up
   zoomLink?: string // Optional Zoom meeting link for the tutor
+  phone?: string // Tutor's phone number
+  email?: string // Tutor's email address
   isActive: boolean
   sortOrder: number
 }

@@ -161,6 +161,18 @@ export async function POST(request: Request) {
       description += `Uploaded Files: ${fileNames}\n\n`
     }
     
+    // Add tutor contact information
+    if (tutor.phone || tutor.email) {
+      description += `Tutor Contact Information:\n`
+      if (tutor.phone) {
+        description += `Phone: ${tutor.phone}\n`
+      }
+      if (tutor.email) {
+        description += `Email: ${tutor.email}\n`
+      }
+      description += `\n`
+    }
+    
     if (tutor.zoomLink) {
       description += `Zoom Meeting Link:\n${tutor.zoomLink}\n`
     } else {

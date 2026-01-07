@@ -175,6 +175,17 @@ export async function POST(request: Request) {
           eventDescription += `Parent: ${parentName}\n`
           eventDescription += `Parent Email: ${parentEmail || 'N/A'}\n`
           
+          // Add tutor contact information
+          if (tutor.phone || tutor.email) {
+            eventDescription += `\nTutor Contact Information:\n`
+            if (tutor.phone) {
+              eventDescription += `Phone: ${tutor.phone}\n`
+            }
+            if (tutor.email) {
+              eventDescription += `Email: ${tutor.email}\n`
+            }
+          }
+          
           if (tutor.zoomLink) {
             eventDescription += `\nZoom Meeting Link:\n${tutor.zoomLink}`
           } else {

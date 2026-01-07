@@ -105,10 +105,13 @@ export async function POST(request: Request) {
     }
 
     // Compute price server-side using simple pricing algorithm (do not trust client input)
+    // Use client's "now" timestamp if provided to ensure frontend and backend calculate the same price
+    const clientNowISO = body.clientNowISO as string | undefined
     const pricingResult = calculateHourlyPriceCents({
       startISO: startDateTimeISO,
       calendarTitle: eventTitle,
       baseRateCents: tutor.baseRateCents,
+      nowISO: clientNowISO, // Use client's timestamp to match frontend calculation
     })
 
     // For 60-minute session, hourly price = total price
@@ -180,7 +183,19 @@ export async function POST(request: Request) {
 
     const session = await stripe.checkout.sessions.create(sessionParams)
 
-    return NextResponse.json({ url: session.url })
+    // Return both the checkout URL and the calculated price for frontend display
+    return NextResponse.json({ 
+      url: session.url,
+      calculatedPrice: amountInCents / 100, // Price in dollars
+      priceBreakdown: {
+        baseCents: breakdown.baseCents,
+        hourlyCents: breakdown.hourlyCents,
+        daysInAdvance: breakdown.daysInAdvance,
+        leadAddOnCents: breakdown.leadAddOnCents,
+        wtp: breakdown.wtp,
+        wtpAddOnCents: breakdown.wtpAddOnCents,
+      }
+    })
   } catch (error: any) {
     console.error('Error creating checkout session:', error)
     return NextResponse.json(

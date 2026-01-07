@@ -412,6 +412,7 @@ function BookNowContent() {
 
       // Create Stripe checkout session (booking will be created via webhook after payment)
       // Price calculated server-side, booking created in webhook
+      // Pass client's current timestamp to ensure frontend and backend calculate the same price
       const checkoutResponse = await fetch('/api/stripe/checkout', {
         method: 'POST',
         headers: {
@@ -429,6 +430,7 @@ function BookNowContent() {
           calendarConnected: tutorCalendarConnected,
           startDateTimeISO: bookingData.timeSlot, // Pass to server for price calculation
           calendarEventTitle: eventTitle, // Pass event title for server-side price calculation
+          clientNowISO: new Date().toISOString(), // Pass client's current time to match frontend calculation
         })
       })
 
@@ -437,7 +439,14 @@ function BookNowContent() {
         throw new Error(errorData.error || 'Failed to create payment session')
       }
 
-      const { url } = await checkoutResponse.json()
+      const { url, calculatedPrice } = await checkoutResponse.json()
+      
+      // Log the calculated price for debugging
+      if (calculatedPrice !== undefined) {
+        console.log('Server-calculated price:', calculatedPrice)
+        // Note: We could update the displayed price here, but since we're redirecting
+        // to Stripe, the price shown in Stripe will be correct
+      }
       
       // Redirect to Stripe Checkout
       if (url) {

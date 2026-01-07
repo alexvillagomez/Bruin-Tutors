@@ -121,10 +121,17 @@ export async function GET(request: Request) {
       windowTitles
     )
 
+    // Filter slots to only include times that are at least 2 hours in advance
+    const twoHoursFromNow = new Date(now.getTime() + 2 * 60 * 60 * 1000)
+    const filteredSlots = slotsWithMetadata.filter(slot => {
+      const slotTime = new Date(slot.isoString)
+      return slotTime >= twoHoursFromNow
+    })
+
     // Return slots with their event titles for pricing
-    const slots = slotsWithMetadata.map(s => s.isoString)
+    const slots = filteredSlots.map(s => s.isoString)
     const slotTitles = Object.fromEntries(
-      slotsWithMetadata.map(s => [s.isoString, s.eventTitle || ''])
+      filteredSlots.map(s => [s.isoString, s.eventTitle || ''])
     )
 
     return NextResponse.json({ 

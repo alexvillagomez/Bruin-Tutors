@@ -144,6 +144,13 @@ function BookNowContent() {
     }
   }, [tutorSlug, tutors, bookingData.tutorId, bookingData.sessionLength])
 
+  // When session length is selected and tutor is already set (from query param), move to step 3
+  useEffect(() => {
+    if (bookingData.tutorId && bookingData.sessionLength && step === 2) {
+      setStep(3)
+    }
+  }, [bookingData.tutorId, bookingData.sessionLength, step])
+
   // Fetch availability when tutor and session length are selected
   useEffect(() => {
     if (bookingData.tutorId && bookingData.sessionLength && step >= 3) {

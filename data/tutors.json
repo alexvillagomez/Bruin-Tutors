@@ -8,7 +8,7 @@
       "AP Physics 1",
       "AP Physics C"
     ],
-    "blurb": "Hi, my name is Alex, and I am currently a junior at UCLA majoring in Economics and minoring in Math, and next year I will be pursuing a Master’s degree in Economics. I have been tutoring since my junior year of high school, coming up on four years now, and have found a lot of enjoyment teaching STEM classes, namely Math and Physics. I scored a 5 on both AP Calculus AB and BC and have expanded my math knowledge through Real Analysis in college, tutoring every math course up to AP Calculus BC. I also scored a 5 on AP Physics 1, AP Physics C, and AP Physics E&M and have taken Physics 1A and 1B in college. While I love math, physics is my favorite subject to learn and teach. I strive to make every session fun and motivating while teaching effective study strategies and perspectives that helped me succeed and led me to pursue these subjects in college. Outside of school, I enjoy sports and the outdoors, including soccer, hiking, and camping. I am also the founder of Bruin Tutors, so feel free to ask any questions about the program.",
+    "blurb": "Hi, my name is Alex, and I am currently a junior at UCLA majoring in Economics and minoring in Math, and next year I will be pursuing a Master's degree in Economics. I have been tutoring since my junior year of high school, coming up on four years now, and have found a lot of enjoyment teaching STEM classes, namely Math and Physics. I scored a 5 on both AP Calculus AB and BC and have expanded my math knowledge through Real Analysis in college, tutoring every math course up to AP Calculus BC. I also scored a 5 on AP Physics 1, AP Physics C, and AP Physics E&M and have taken Physics 1A and 1B in college. While I love math, physics is my favorite subject to learn and teach. I strive to make every session fun and motivating while teaching effective study strategies and perspectives that helped me succeed and led me to pursue these subjects in college. Outside of school, I enjoy sports and the outdoors, including soccer, hiking, and camping. I am also the founder of Bruin Tutors, so feel free to ask any questions about the program.",
     "bookingBlurb": "UCLA junior majoring in Econ and Math. 4 years tutoring experience.",
     "photoUrl": "/alex_villagomez_photo.jpg",
     "baseRateCents": 5500,
@@ -16,6 +16,8 @@
     "bookingsCalendarId": "alexvillagomez1@g.ucla.edu",
     "calendarConnected": true,
     "zoomLink": "https://ucla.zoom.us/j/8587764354",
+    "phone": "8587764354",
+    "email": "alexvillagomeztutoring@gmail.com",
     "isActive": true,
     "sortOrder": 1
   },
@@ -27,7 +29,7 @@
       "AP Language",
       "AP Literature"
     ],
-    "blurb": "Hi! My name is Lauren Chen, and I am a third-year Human Biology and Society major at UCLA. Having successfully completed the AP Chemistry course myself, along with several general and organic chemistry courses in college, I've built a solid understanding of both foundational chemistry concepts and more advanced material. I have also completed both AP Language and Literature, providing me with a strong foundation in reading, writing, and employing effective rhetorical strategies. I have additional experience as a peer writing tutor and teacher's assistant, where I have developed a passion for helping students strengthen their own writing skillsets and overall confidence. I focus on breaking down complex ideas into clear, approachable steps and tailoring my teaching style to each student’s individual needs and learning goals. Whether in need of content assistance, homework help, review work, or preparation for an exam, I am excited to help support you to success!",
+    "blurb": "Hi! My name is Lauren Chen, and I am a third-year Human Biology and Society major at UCLA. Having successfully completed the AP Chemistry course myself, along with several general and organic chemistry courses in college, I've built a solid understanding of both foundational chemistry concepts and more advanced material. I have also completed both AP Language and Literature, providing me with a strong foundation in reading, writing, and employing effective rhetorical strategies. I have additional experience as a peer writing tutor and teacher's assistant, where I have developed a passion for helping students strengthen their own writing skillsets and overall confidence. I focus on breaking down complex ideas into clear, approachable steps and tailoring my teaching style to each student's individual needs and learning goals. Whether in need of content assistance, homework help, review work, or preparation for an exam, I am excited to help support you to success!",
     "bookingBlurb": "Third-year UCLA student specializing in AP Chemistry, AP Language, and AP Literature. Experienced peer writing tutor and teacher's assistant.",
     "photoUrl": "/lauren_chen_photo.jpg",
     "baseRateCents": 5500,
@@ -35,6 +37,8 @@
     "bookingsCalendarId": "c_1d07a1b6643cb962772ebbb417baf2898d5329088e7c89fdc7934bf6d74cead4@group.calendar.google.com",
     "calendarConnected": true,
     "zoomLink": "https://ucla.zoom.us/j/7148649362",
+    "phone": "7148649362",
+    "email": "laurenchen19@g.ucla.edu",
     "isActive": true,
     "sortOrder": 2
   },
@@ -53,6 +57,8 @@
     "bookingsCalendarId": "c_d4dcad492a67499b3909258e3db85bed680e879fd9da3d027b73925ddfdba2d5@group.calendar.google.com",
     "calendarConnected": true,
     "zoomLink": "https://ucla.zoom.us/j/9495053438",
+    "phone": "9495053438",
+    "email": "lisaishida@g.ucla.edu",
     "isActive": true,
     "sortOrder": 3
   }

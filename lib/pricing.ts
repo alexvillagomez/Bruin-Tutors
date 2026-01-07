@@ -91,25 +91,11 @@ export function computeDaysInAdvance(startISO: string, now: Date = new Date()): 
 
 /**
  * Calculate hourly price in cents with breakdown
- * TEMPORARY: All prices set to 0 for testing
  */
 export function calculateHourlyPriceCents(params: PricingParams): {
   hourlyCents: number
   breakdown: PricingBreakdown
 } {
-  // TEMPORARY: Return 0 for all prices (for testing)
-  return {
-    hourlyCents: 0,
-    breakdown: {
-      hourlyCents: 0,
-      baseCents: 0,
-      daysInAdvance: 0,
-      leadAddOnCents: 0,
-      wtp: 5,
-      wtpAddOnCents: 0,
-    },
-  }
-  
   // Base rate (default to $50 if not specified)
   const baseCents = params.baseRateCents ?? 5000
   
@@ -180,23 +166,19 @@ export type PricingInput = {
 }
 
 export function calculatePrice(input: PricingInput): number {
-  // TEMPORARY: Return 0 for all prices (for testing)
-  return 0
+  // Only support 60-minute sessions
+  if (input.sessionLength !== 60) {
+    return 0
+  }
   
-  // Original code (commented out for testing):
-  // // Only support 60-minute sessions
-  // if (input.sessionLength !== 60) {
-  //   return 0
-  // }
-  // 
-  // if (!input.timeSlot) {
-  //   return 50 // Default $50 if no time slot
-  // }
-  // 
-  // const result = calculateHourlyPriceCents({
-  //   startISO: input.timeSlot,
-  //   calendarTitle: input.calendarEventTitle,
-  // })
-  // 
-  // return result.hourlyCents / 100 // Convert cents to dollars
+  if (!input.timeSlot) {
+    return 50 // Default $50 if no time slot
+  }
+  
+  const result = calculateHourlyPriceCents({
+    startISO: input.timeSlot,
+    calendarTitle: input.calendarEventTitle,
+  })
+  
+  return result.hourlyCents / 100 // Convert cents to dollars
 }

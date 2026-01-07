@@ -152,9 +152,14 @@ function BookNowContent() {
   }, [bookingData.tutorId, bookingData.sessionLength, step])
 
   // Fetch availability when tutor and session length are selected
+  // This runs whenever step becomes 3 or higher, or when tutor/sessionLength changes while on step 3+
   useEffect(() => {
     if (bookingData.tutorId && bookingData.sessionLength && step >= 3) {
-      fetchAvailability()
+      // Use a small delay to ensure state is fully updated
+      const timer = setTimeout(() => {
+        fetchAvailability()
+      }, 100)
+      return () => clearTimeout(timer)
     } else {
       setAvailability([])
     }

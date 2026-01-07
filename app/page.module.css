@@ -57,6 +57,13 @@
   filter: brightness(0.9);
 }
 
+/* Hide the top Book Now button on mobile */
+@media (max-width: 768px) {
+  .primaryCTA {
+    display: none;
+  }
+}
+
 .secondaryText {
   font-size: 0.95rem;
   color: #003B5C;

@@ -69,17 +69,37 @@ export function parseWtpFromTitle(title?: string): number {
 
 /**
  * Compute days in advance (0, 1, 2, or 3 where 3 means 3+)
- * Compares LOCAL calendar dates (not hours)
+ * Compares dates in PST timezone for consistency between frontend and backend
  */
 export function computeDaysInAdvance(startISO: string, now: Date = new Date()): number {
-  const startDate = new Date(startISO)
+  const TIMEZONE = 'America/Los_Angeles' // Use PST for consistent date comparison
   
-  // Get local date strings (YYYY-MM-DD) for comparison
-  const nowLocal = new Date(now.getFullYear(), now.getMonth(), now.getDate())
-  const startLocal = new Date(startDate.getFullYear(), startDate.getMonth(), startDate.getDate())
+  // Helper to get date string in PST (YYYY-MM-DD)
+  function getPSTDateString(date: Date): string {
+    // Use Intl.DateTimeFormat to get date components in PST
+    const formatter = new Intl.DateTimeFormat('en-CA', {
+      timeZone: TIMEZONE,
+      year: 'numeric',
+      month: '2-digit',
+      day: '2-digit'
+    })
+    // en-CA format returns YYYY-MM-DD directly
+    return formatter.format(date)
+  }
+  
+  // Get PST date strings for both dates (YYYY-MM-DD format)
+  const startDate = new Date(startISO)
+  const nowPSTString = getPSTDateString(now)
+  const startPSTString = getPSTDateString(startDate)
+  
+  // Parse date strings to compare (YYYY-MM-DD format)
+  const nowParts = nowPSTString.split('-').map(Number)
+  const startParts = startPSTString.split('-').map(Number)
+  const nowPST = new Date(nowParts[0], nowParts[1] - 1, nowParts[2])
+  const startPST = new Date(startParts[0], startParts[1] - 1, startParts[2])
   
   // Calculate difference in days
-  const diffTime = startLocal.getTime() - nowLocal.getTime()
+  const diffTime = startPST.getTime() - nowPST.getTime()
   const diffDays = Math.floor(diffTime / (1000 * 60 * 60 * 24))
   
   if (diffDays < 0) return 0 // Past dates treated as same day

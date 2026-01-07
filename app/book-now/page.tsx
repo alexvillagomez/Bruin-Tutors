@@ -125,24 +125,25 @@ function BookNowContent() {
     fetchTutors()
   }, [])
 
-  // Auto-select tutor from query param
+  // Auto-select tutor from query param and auto-select session length
   useEffect(() => {
     if (tutorSlug && tutors.length > 0 && !bookingData.tutorId) {
       // Try to find tutor by slug (matching the slug from tutors.ts)
       // First check if it matches an ID from the API tutors
       const tutorFromApi = tutors.find(t => t.id === tutorSlug)
       if (tutorFromApi) {
-        setBookingData(prev => ({ ...prev, tutorId: tutorFromApi.id }))
-        // If tutor is pre-selected, skip to step 2 (tutor selection) or step 3 (time selection)
-        // But only if session length is also selected
-        if (bookingData.sessionLength) {
-          setStep(3)
-        } else {
-          setStep(2)
-        }
+        // Auto-select tutor and default to 60-minute session
+        // This simulates going through step 1 (selecting session length)
+        setBookingData(prev => ({ 
+          ...prev, 
+          tutorId: tutorFromApi.id,
+          sessionLength: 60 // Auto-select 60-minute session
+        }))
+        // Skip directly to step 3 (time selection) since both tutor and session length are set
+        setStep(3)
       }
     }
-  }, [tutorSlug, tutors, bookingData.tutorId, bookingData.sessionLength])
+  }, [tutorSlug, tutors, bookingData.tutorId])
 
   // When session length is selected and tutor is already set (from query param), move to step 3
   useEffect(() => {

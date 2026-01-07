@@ -41,6 +41,7 @@ function BookNowContent() {
   const [dayOffset, setDayOffset] = useState(0) // For pagination through days
   const [userTimezone, setUserTimezone] = useState<string>('America/Los_Angeles') // Default to PST
   const [timezoneAbbr, setTimezoneAbbr] = useState<string>('PST') // Default abbreviation
+  const [cameFromTutorsPage, setCameFromTutorsPage] = useState(false) // Track if user came from tutors page
   const [bookingData, setBookingData] = useState<BookingData>({
     sessionLength: null,
     tutorId: null,
@@ -139,6 +140,8 @@ function BookNowContent() {
           tutorId: tutorFromApi.id,
           sessionLength: 60 // Auto-select 60-minute session
         }))
+        // Mark that user came from tutors page
+        setCameFromTutorsPage(true)
         // Skip directly to step 3 (time selection) since both tutor and session length are set
         setStep(3)
       }
@@ -146,11 +149,12 @@ function BookNowContent() {
   }, [tutorSlug, tutors, bookingData.tutorId])
 
   // When session length is selected and tutor is already set (from query param), move to step 3
+  // Only auto-advance if user came from tutors page (to prevent auto-advancing when manually going back)
   useEffect(() => {
-    if (bookingData.tutorId && bookingData.sessionLength && step === 2) {
+    if (cameFromTutorsPage && bookingData.tutorId && bookingData.sessionLength && step === 2) {
       setStep(3)
     }
-  }, [bookingData.tutorId, bookingData.sessionLength, step])
+  }, [bookingData.tutorId, bookingData.sessionLength, step, cameFromTutorsPage])
 
   // Fetch availability when tutor and session length are selected
   // This runs whenever step becomes 3 or higher, or when tutor/sessionLength changes while on step 3+
@@ -375,8 +379,20 @@ function BookNowContent() {
         // For 15-minute consultation, back button goes to step 1 (session selection)
         setStep(1)
         setBookingData({ ...bookingData, tutorId: null, timeSlot: null })
+        setCameFromTutorsPage(false) // Reset flag
+      } else if (step === 3 && cameFromTutorsPage) {
+        // If came from tutors page, going back from step 3 should go to step 1
+        // and clear the auto-selected session length
+        setStep(1)
+        setBookingData({ ...bookingData, sessionLength: null, timeSlot: null })
+        setCameFromTutorsPage(false) // Reset flag so normal flow works
       } else {
+        // Normal back behavior
         setStep(step - 1)
+        // If going back from step 2 to step 1, clear session length if not from tutors page
+        if (step === 2 && !cameFromTutorsPage) {
+          setBookingData({ ...bookingData, sessionLength: null, tutorId: null, timeSlot: null })
+        }
       }
     }
   }

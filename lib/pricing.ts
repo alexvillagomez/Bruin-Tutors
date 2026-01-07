@@ -111,11 +111,25 @@ export function computeDaysInAdvance(startISO: string, now: Date = new Date()): 
 
 /**
  * Calculate hourly price in cents with breakdown
+ * TEMPORARY: All prices set to $0 for testing
  */
 export function calculateHourlyPriceCents(params: PricingParams): {
   hourlyCents: number
   breakdown: PricingBreakdown
 } {
+  // TEMPORARY: Return $0 for all prices (for testing)
+  return {
+    hourlyCents: 0,
+    breakdown: {
+      hourlyCents: 0,
+      baseCents: 0,
+      daysInAdvance: 0,
+      leadAddOnCents: 0,
+      wtp: 5,
+      wtpAddOnCents: 0,
+    },
+  }
+  
   // Base rate (default to $50 if not specified)
   const baseCents = params.baseRateCents ?? 5000
   

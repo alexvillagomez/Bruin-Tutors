@@ -1,4 +1,5 @@
 import { NextResponse } from 'next/server'
+import { headers } from 'next/headers'
 import { stripe } from '@/lib/stripe'
 import { calculateHourlyPriceCents } from '@/lib/pricing'
 import { getTutorById } from '@/lib/tutors'
@@ -6,8 +7,27 @@ import { getCalendarEvents } from '@/lib/googleClient'
 import { parseAvailabilityEventWithTitle } from '@/lib/slotGenerator'
 import Stripe from 'stripe'
 
-const BASE_URL = process.env.NEXT_PUBLIC_BASE_URL || 'http://localhost:3000'
 const TIMEZONE = process.env.APP_TIMEZONE || 'America/Los_Angeles'
+
+// Get base URL from environment or request headers
+function getBaseUrl(request: Request): string {
+  // First priority: explicit environment variable
+  if (process.env.NEXT_PUBLIC_BASE_URL) {
+    return process.env.NEXT_PUBLIC_BASE_URL
+  }
+  
+  // Second priority: Vercel's automatic URL (production)
+  if (process.env.VERCEL_URL) {
+    return `https://${process.env.VERCEL_URL}`
+  }
+  
+  // Third priority: construct from request headers
+  const url = new URL(request.url)
+  const protocol = url.protocol
+  const host = url.host
+  
+  return `${protocol}//${host}`
+}
 
 export async function POST(request: Request) {
   try {
@@ -109,8 +129,8 @@ export async function POST(request: Request) {
           quantity: 1,
         },
       ],
-      success_url: `${BASE_URL}/payment/success?session_id={CHECKOUT_SESSION_ID}`,
-      cancel_url: `${BASE_URL}/payment/cancel`,
+      success_url: `${getBaseUrl(request)}/payment/success?session_id={CHECKOUT_SESSION_ID}`,
+      cancel_url: `${getBaseUrl(request)}/payment/cancel`,
       metadata: {},
     }
 

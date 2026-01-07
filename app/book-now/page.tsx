@@ -39,6 +39,8 @@ function BookNowContent() {
   const [error, setError] = useState<string | null>(null)
   const [calendarNotConnected, setCalendarNotConnected] = useState(false)
   const [dayOffset, setDayOffset] = useState(0) // For pagination through days
+  const [userTimezone, setUserTimezone] = useState<string>('America/Los_Angeles') // Default to PST
+  const [timezoneAbbr, setTimezoneAbbr] = useState<string>('PST') // Default abbreviation
   const [bookingData, setBookingData] = useState<BookingData>({
     sessionLength: null,
     tutorId: null,
@@ -74,6 +76,36 @@ function BookNowContent() {
       })
     }
   }, [tutorSlug, step])
+
+  // Detect user timezone on mount
+  useEffect(() => {
+    try {
+      const detectedTimezone = Intl.DateTimeFormat().resolvedOptions().timeZone
+      setUserTimezone(detectedTimezone)
+      
+      // Get timezone abbreviation
+      const now = new Date()
+      const formatter = new Intl.DateTimeFormat('en-US', {
+        timeZone: detectedTimezone,
+        timeZoneName: 'short'
+      })
+      const parts = formatter.formatToParts(now)
+      const tzPart = parts.find(part => part.type === 'timeZoneName')
+      if (tzPart) {
+        setTimezoneAbbr(tzPart.value)
+      } else {
+        // Fallback: try to get abbreviation from date string
+        const tzString = now.toLocaleString('en-US', { timeZone: detectedTimezone, timeZoneName: 'short' })
+        const match = tzString.match(/\s([A-Z]{2,5})$/i)
+        if (match) {
+          setTimezoneAbbr(match[1])
+        }
+      }
+    } catch (err) {
+      console.error('Error detecting timezone:', err)
+      // Keep defaults (PST)
+    }
+  }, [])
 
   // Fetch tutors on mount
   useEffect(() => {
@@ -179,7 +211,8 @@ function BookNowContent() {
     return date.toLocaleDateString('en-US', {
       weekday: 'short',
       month: 'short',
-      day: 'numeric'
+      day: 'numeric',
+      timeZone: userTimezone
     })
   }
 
@@ -188,8 +221,14 @@ function BookNowContent() {
     return date.toLocaleTimeString('en-US', {
       hour: 'numeric',
       minute: '2-digit',
-      hour12: true
+      hour12: true,
+      timeZone: userTimezone
     })
+  }
+
+  const formatTimeWithTimezone = (isoString: string) => {
+    const time = formatTime(isoString)
+    return `${time} ${timezoneAbbr}`
   }
 
   // Group availability slots by day
@@ -606,6 +645,9 @@ function BookNowContent() {
           {step === 3 && (
             <div className={styles.stepContent}>
               <h2 className={styles.stepTitle}>Choose a Time</h2>
+              <p className={styles.timezoneNote}>
+                Times shown in your timezone: <strong>{timezoneAbbr}</strong> ({userTimezone})
+              </p>
               {selectedTutor ? (
                 <>
                   <BookingTutorHeader
@@ -669,7 +711,7 @@ function BookNowContent() {
                                     className={`${styles.timeSlot} ${isSelected ? styles.selected : ''}`}
                                     onClick={() => setBookingData({ ...bookingData, timeSlot: slot })}
                                   >
-                                    <span className={styles.timeTime}>{formatTime(slot)}</span>
+                                    <span className={styles.timeTime}>{formatTimeWithTimezone(slot)}</span>
                                     {priceData.price > 0 && (
                                       <span className={styles.timePrice}>${priceData.price.toFixed(2)}</span>
                                     )}
@@ -911,7 +953,7 @@ function BookNowContent() {
                   <span>
                     {bookingData.timeSlot && (
                       <>
-                        {formatDate(bookingData.timeSlot)} at {formatTime(bookingData.timeSlot)}
+                        {formatDate(bookingData.timeSlot)} at {formatTimeWithTimezone(bookingData.timeSlot)}
                       </>
                     )}
                   </span>

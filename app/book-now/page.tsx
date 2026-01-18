@@ -38,6 +38,7 @@ function BookNowContent() {
   const [submitting, setSubmitting] = useState(false)
   const [error, setError] = useState<string | null>(null)
   const [calendarNotConnected, setCalendarNotConnected] = useState(false)
+  const [oauthTokenExpired, setOauthTokenExpired] = useState(false)
   const [dayOffset, setDayOffset] = useState(0) // For pagination through days
   const [userTimezone, setUserTimezone] = useState<string>('America/Los_Angeles') // Default to PST
   const [timezoneAbbr, setTimezoneAbbr] = useState<string>('PST') // Default abbreviation
@@ -192,10 +193,12 @@ function BookNowContent() {
       // Check if calendar is not connected
       if (data.calendarNotConnected) {
         setCalendarNotConnected(true)
+        setOauthTokenExpired(data.oauthTokenExpired || false)
         setAvailability([]) // No time slots available, but allow booking to proceed
         setSlotTitles({})
       } else {
         setCalendarNotConnected(false)
+        setOauthTokenExpired(false)
         setAvailability(data.slots || [])
         setSlotTitles(data.slotTitles || {}) // Store event titles for pricing
       }
@@ -700,10 +703,21 @@ function BookNowContent() {
                     </div>
                   ) : calendarNotConnected ? (
                     <div className={styles.emptyState}>
-                      <p>
-                        {selectedTutor.displayName}'s calendar is being finalized. 
-                        Your request will be confirmed after payment.
-                      </p>
+                      {oauthTokenExpired ? (
+                        <>
+                          <p style={{ color: '#d32f2f', fontWeight: 'bold', marginBottom: '12px' }}>
+                            ⚠️ Calendar connection needs to be refreshed
+                          </p>
+                          <p style={{ fontSize: '0.9em', color: '#666' }}>
+                            The calendar service needs to be reconnected. Please contact support or check the server logs for instructions.
+                          </p>
+                        </>
+                      ) : (
+                        <p>
+                          {selectedTutor.displayName}'s calendar is being finalized. 
+                          Your request will be confirmed after payment.
+                        </p>
+                      )}
                     </div>
                   ) : availability.length === 0 ? (
                     <div className={styles.emptyState}>

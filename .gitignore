@@ -42,4 +42,23 @@ next-env.d.ts
 
 /lib/generated/prisma
 
+# bookings data
+data/bookings.json
+
+# Documentation and setup files (personal/internal use only)
+*_SETUP.md
+*_DESCRIPTION.md
+*_GUIDE.md
+*_SKILLS.md
+DEBUGGING.md
+DEPLOYMENT.md
+ENV_VARIABLES.md
+IMPLEMENTATION_SUMMARY.md
+NEXT_STEPS.md
+PHASE2_IMPLEMENTATION.md
+SEO_IMPROVEMENTS.md
+SETUP.md
+WEBHOOK_DEBUGGING.md
+TUTORS_README.md
+GOOGLE_OAUTH_TOKEN_GUIDE.md
 

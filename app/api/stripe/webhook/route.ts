@@ -3,6 +3,7 @@ import { headers } from 'next/headers'
 import { stripe } from '@/lib/stripe'
 import { getTutorById } from '@/lib/tutors'
 import { createCalendarEvent } from '@/lib/googleClient'
+import { saveBooking } from '@/lib/bookings-storage'
 import Stripe from 'stripe'
 
 // Disable body parsing for webhook signature verification
@@ -200,7 +201,7 @@ export async function POST(request: Request) {
             studentEmail,
           })
 
-          // Prepare attendees - include both parent and student emails
+          // Prepare attendees - include parent, student, and tutor emails
           const attendees: Array<{ email: string; displayName?: string }> = []
           if (parentEmail) {
             attendees.push({
@@ -212,6 +213,13 @@ export async function POST(request: Request) {
             attendees.push({
               email: studentEmail,
               displayName: studentName,
+            })
+          }
+          // Add tutor email so they receive calendar invite
+          if (tutor.email) {
+            attendees.push({
+              email: tutor.email,
+              displayName: tutor.displayName,
             })
           }
 
@@ -283,6 +291,33 @@ export async function POST(request: Request) {
         console.log('✅ Calendar invites will be sent to:', inviteEmails)
       } else {
         console.warn('No calendar event created - invites cannot be sent')
+      }
+
+      // Save booking to JSON file for tracking
+      try {
+        await saveBooking({
+          id: session.id,
+          stripeSessionId: session.id,
+          tutorId: tutor.id,
+          tutorName: tutor.displayName,
+          sessionLength: durationMinutes,
+          startTime: startTime.toISOString(),
+          endTime: endTime.toISOString(),
+          parentName: parentName || 'Unknown',
+          parentEmail: parentEmail || '',
+          studentName: studentName || 'Unknown',
+          studentEmail: studentEmail || '',
+          price: session.amount_total ? session.amount_total / 100 : undefined,
+          priceCents: session.amount_total || undefined,
+          status: 'completed',
+          createdAt: new Date().toISOString(),
+          calendarEventId: googleCalendarEventId || undefined,
+          calendarEventLink: calendarEventLink || undefined,
+        })
+        console.log('✅ Booking saved to tracking file')
+      } catch (saveError: any) {
+        console.error('❌ Failed to save booking to tracking file:', saveError)
+        // Don't fail the webhook if saving to file fails
       }
 
       const response = {

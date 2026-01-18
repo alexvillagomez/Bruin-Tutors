@@ -4,6 +4,7 @@ import { getCalendarEvents, createCalendarEvent } from '@/lib/googleClient'
 import { parseAvailabilityEvent, parseBookingEvent } from '@/lib/slotGenerator'
 import { hasOverlap } from '@/lib/overlap'
 import { BookingRequest, SessionLength } from '@/lib/types'
+import { saveBooking } from '@/lib/bookings-storage'
 import { randomUUID } from 'crypto'
 
 const TIMEZONE = process.env.APP_TIMEZONE || 'America/Los_Angeles'
@@ -179,7 +180,7 @@ export async function POST(request: Request) {
       description += `Zoom link will be emailed.\n`
     }
 
-    // Prepare attendees - include both parent and student emails
+    // Prepare attendees - include parent, student, and tutor emails
     const attendees: Array<{ email: string; displayName?: string }> = []
     if (parentEmail) {
       attendees.push({
@@ -191,6 +192,13 @@ export async function POST(request: Request) {
       attendees.push({
         email: studentEmail,
         displayName: studentName,
+      })
+    }
+    // Add tutor email so they receive calendar invite
+    if (tutor.email) {
+      attendees.push({
+        email: tutor.email,
+        displayName: tutor.displayName,
       })
     }
 
@@ -224,6 +232,34 @@ export async function POST(request: Request) {
     const availabilityEventData = { ...eventData }
     delete availabilityEventData.attendees // Don't send invites for availability calendar
     await createCalendarEvent(tutor.availabilityCalendarId, availabilityEventData)
+
+    // Save booking to JSON file for tracking
+    try {
+      await saveBooking({
+        id: bookingId,
+        bookingId,
+        tutorId: tutor.id,
+        tutorName: tutor.displayName,
+        sessionLength,
+        startTime: startTime.toISOString(),
+        endTime: endTime.toISOString(),
+        parentName,
+        parentEmail,
+        studentName,
+        studentEmail,
+        studentGrade: grade,
+        course,
+        needsHelpWith: helpText,
+        price: 0, // Free consultation
+        priceCents: 0,
+        status: 'completed',
+        createdAt: new Date().toISOString(),
+      })
+      console.log('✅ Booking saved to tracking file')
+    } catch (saveError: any) {
+      console.error('❌ Failed to save booking to tracking file:', saveError)
+      // Don't fail the booking if saving to file fails
+    }
 
     return NextResponse.json({ bookingId })
   } catch (error) {

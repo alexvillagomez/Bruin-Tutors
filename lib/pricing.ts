@@ -3,11 +3,6 @@
  * 
  * Rules:
  * - Base rate: $50/hour (60-minute sessions only)
- * - Lead-time add-on:
- *   - Same day (0 days): +$15
- *   - 1 day in advance: +$10
- *   - 2 days in advance: +$5
- *   - 3+ days in advance: +$0
  * - WTP (Willingness-to-Tutor) rating from calendar event title (1-10):
  *   - Rating 5: +$0 (neutral)
  *   - Rating < 5: +$5 per point below 5
@@ -119,21 +114,11 @@ export function calculateHourlyPriceCents(params: PricingParams): {
   // Base rate (default to $50 if not specified)
   const baseCents = params.baseRateCents ?? 5000
   
-  // Compute days in advance
+  // Compute days in advance (for breakdown only; no lead-time add-on)
   const now = params.nowISO ? new Date(params.nowISO as string) : new Date()
   const daysInAdvance = computeDaysInAdvance(params.startISO, now)
-  
-  // Calculate lead-time add-on
-  let leadAddOnCents = 0
-  if (daysInAdvance === 0) {
-    leadAddOnCents = 1500 // +$15 for same day
-  } else if (daysInAdvance === 1) {
-    leadAddOnCents = 1000 // +$10 for 1 day
-  } else if (daysInAdvance === 2) {
-    leadAddOnCents = 500 // +$5 for 2 days
-  }
-  // daysInAdvance === 3 means 3+ days, no add-on
-  
+  const leadAddOnCents = 0 // No additional cost for booking close to date
+
   // Parse WTP rating from calendar title
   const wtp = parseWtpFromTitle(params.calendarTitle)
   

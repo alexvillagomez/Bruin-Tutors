@@ -1,6 +1,7 @@
 import { Metadata } from 'next'
 import { Source_Sans_3 } from 'next/font/google'
 import { Analytics } from '@vercel/analytics/next'
+import { SpeedInsights } from '@vercel/speed-insights/next'
 import Header from '@/components/Header'
 
 const sourceSans = Source_Sans_3({
@@ -64,6 +65,7 @@ export default function RootLayout({
         <Header />
         {children}
         <Analytics />
+        <SpeedInsights />
       </body>
     </html>
   )
